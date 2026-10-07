@@ -1,45 +1,36 @@
-import java.util.Scanner;
-
-public enum Masas {
-    SUAVE, CRUJIENTE, TOSTADA
-}
-
-public enum Salsas {
-    TOMATE, PICANTE, CHAMPIÑÓN
-}
-
-public enum Toppings {
-    PEPPERONI, JAMON, PIÑA, CHILE, CHAMPIÑÓN, NOTOPPING
-}
-
-public enum Quesos {
-    PARMESANO, MOZARELA, ORILLA, NOQUESO
-}
+enum Masas { SUAVE, CRUJIENTE, TOSTADA }
+enum Salsas { TOMATE, PICANTE, CHAMPINON }
+enum Toppings { PEPPERONI, JAMON, PINA, CHILE, CHAMPINON, SIN_TOPPING }
+enum Quesos { PARMESANO, MOZARELA, ORILLA, SIN_QUESO }
 
 public class Orden {
-    private int noOrden;
-    private Masas masas;
-    private Salsas salsas;
-    private Toppings toppings;
-    private Quesos quesos;
-    private int cantidad;
+    private final int noOrden;
+    private final Masas masa;
+    private final Salsas salsa;
+    private final Toppings topping;
+    private final Quesos queso;
+    private final int cantidad;
 
-    public void EnviarOrden(int noOrden, Masas masas, Salsas salsas, Toppings toppings, Quesos quesos){
-        System.out.println("ORDEN DE PIZZA");
+    public Orden(int noOrden, Masas masa, Salsas salsa,
+                 Toppings topping, Quesos queso, int cantidad) {
+        this.noOrden = noOrden;
+        this.masa = masa;
+        this.salsa = salsa;
+        this.topping = topping;
+        this.queso = queso;
+        this.cantidad = cantidad;
+    }
 
-        System.out.println("Orden No.: ");
-        noOrden = scanner.nextLine();
+    public int getNoOrden() { return noOrden; }
+    public int getCantidad() { return cantidad; }
 
-        System.out.println("Tipo de masa: ");
-        masas = Masas.valueOf(masasTexto.toUpperCase());
-
-        System.out.println("Tipo de salsa: ");
-        salsas = Salsas.valueOf(salsasTexto.toUpperCase());
-
-        System.out.println("Topping agregado: ");
-        toppings = Toppings.valueOf(toppingsTexto.toUpperCase());
-
-        System.out.println("Tipo de queso: ");
-        quesos = Quesos.valueOf(quesosTexto.toUpperCase());
+    @Override
+    public String toString() {
+        return "Orden No. " + noOrden
+                + "\nMasa: " + masa
+                + "\nSalsa: " + salsa
+                + "\nTopping: " + topping
+                + "\nQueso: " + queso
+                + "\nCantidad: " + cantidad;
     }
 }
